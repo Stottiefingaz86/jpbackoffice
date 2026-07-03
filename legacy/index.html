@@ -159,6 +159,23 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
       window.Babel.transformScriptTags();
     }
+    function wireNewJackpotButtons() {
+      document.querySelectorAll('button').forEach(function(btn) {
+        if ((btn.textContent || '').trim() !== 'New jackpot' || btn.dataset.jpWired) return;
+        btn.dataset.jpWired = '1';
+        btn.addEventListener('click', function(e) {
+          var propsKey = Object.keys(btn).find(function(k) { return k.indexOf('__reactProps') === 0; });
+          var handler = propsKey && btn[propsKey] && btn[propsKey].onClick;
+          if (typeof handler === 'function') {
+            handler(e);
+            requestAnimationFrame(function() { window.scrollTo(0, 0); });
+          }
+        });
+      });
+    }
+    wireNewJackpotButtons();
+    new MutationObserver(wireNewJackpotButtons).observe(document.body, { childList: true, subtree: true });
+    if (loading) loading.remove();
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
     console.error('Bundle unpack error:', err);
