@@ -72,7 +72,7 @@
     --destructive: hsl(358 75% 59%);
     --border: hsl(0 0% 91.1%);
     --input: hsl(0 0% 91.1%);
-    --ring: hsl(153 60% 53%);
+    --ring: hsl(0 0% 62.8%);
     --brand: hsl(153 60% 53%);
     --brand-foreground: hsl(153 40% 12%);
     --surface-100: hsl(0 0% 100%);
@@ -113,7 +113,7 @@
     --destructive: hsl(358 75% 59%);
     --border: hsl(0 0% 17.9%);
     --input: hsl(0 0% 20.5%);
-    --ring: hsl(153 60% 53%);
+    --ring: hsl(0 0% 42%);
     --brand: hsl(153 60% 53%);
     --brand-foreground: hsl(153 40% 12%);
     --surface-100: hsl(0 0% 13.6%);
@@ -136,8 +136,49 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
+
+  *:focus-visible {
+    outline: none;
+  }
+
+  [data-slot="input"],
+  [data-slot="textarea"],
+  [data-slot="select-trigger"] {
+    @apply rounded-md border-border bg-surface-100 shadow-none dark:bg-surface-200;
+  }
+
+  [data-slot="input"]:focus-visible,
+  [data-slot="textarea"]:focus-visible,
+  [data-slot="select-trigger"]:focus-visible {
+    border-color: hsl(0 0% 55%);
+    box-shadow: none;
+    outline: none;
+    --tw-ring-shadow: 0 0 #0000;
+  }
+
+  .dark [data-slot="input"]:focus-visible,
+  .dark [data-slot="textarea"]:focus-visible,
+  .dark [data-slot="select-trigger"]:focus-visible {
+    border-color: hsl(0 0% 45%);
+  }
+
+  [data-slot="input-group"]:has([data-slot="input-group-control"]:focus-visible) {
+    border-color: hsl(0 0% 55%);
+    box-shadow: none;
+    --tw-ring-shadow: 0 0 #0000;
+  }
+
+  .dark
+    [data-slot="input-group"]:has([data-slot="input-group-control"]:focus-visible) {
+    border-color: hsl(0 0% 45%);
+  }
+
+  [data-slot="skeleton"] {
+    @apply bg-muted/80;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -154,6 +195,18 @@
   .supabase-sidebar [data-sidebar="menu-button"]:focus-visible {
     outline: none;
     box-shadow: none;
+  }
+
+  .supabase-sidebar [data-sidebar="group-label"] {
+    letter-spacing: 0.06em;
+  }
+
+  .supabase-sidebar [data-sidebar="content"] {
+    scrollbar-gutter: stable;
+  }
+
+  .group[data-collapsible="icon"] .supabase-sidebar [data-sidebar="separator"] {
+    display: none;
   }
 }
 

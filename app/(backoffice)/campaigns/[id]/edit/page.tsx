@@ -1,7 +1,15 @@
 import { notFound } from "next/navigation"
 
-import { CampaignEditor } from "@/components/campaign-editor"
+import dynamic from "next/dynamic"
+
+import { FormPageSkeleton } from "@/components/backoffice-loading"
 import { getCampaignDetail } from "@/lib/campaign-data"
+
+const CampaignEditor = dynamic(
+  () =>
+    import("@/components/campaign-editor").then((mod) => mod.CampaignEditor),
+  { loading: () => <FormPageSkeleton /> }
+)
 
 export default async function EditCampaignPage({
   params,

@@ -60,13 +60,53 @@ export type AuditEntry = {
 export const brandName = "LuckyStar Casino"
 export const environment = "GLI · Production"
 
+export type Brand = {
+  id: string
+  name: string
+  initials: string
+  color: string
+}
+
+export const brands: Brand[] = [
+  {
+    id: "royal-vegas",
+    name: "Royal Vegas",
+    initials: "RV",
+    color: "hsl(38 92% 50%)",
+  },
+  {
+    id: "spin-palace",
+    name: "Spin Palace",
+    initials: "SP",
+    color: "hsl(270 60% 55%)",
+  },
+  {
+    id: "jackpot-city",
+    name: "Jackpot City",
+    initials: "JC",
+    color: "hsl(210 80% 55%)",
+  },
+  {
+    id: "ruby-fortune",
+    name: "Ruby Fortune",
+    initials: "RF",
+    color: "hsl(350 70% 55%)",
+  },
+  {
+    id: "gala-casino",
+    name: "Gala Casino",
+    initials: "GC",
+    color: "hsl(153 60% 45%)",
+  },
+]
+
 export const navMain = [
   { title: "Dashboard", url: "/dashboard", icon: "layout-dashboard" as const },
-  { title: "Jackpots", url: "/jackpots", icon: "trophy" as const },
+  { title: "Jackpots", url: "/jackpots", icon: "coins" as const },
   { title: "Templates", url: "/templates", icon: "layout-template" as const },
   { title: "Campaigns", url: "/campaigns", icon: "megaphone" as const },
   { title: "Access Control", url: "/access", icon: "shield" as const },
-  { title: "Audit Log", url: "/audit", icon: "scroll-text" as const },
+  { title: "Audit Log", url: "/audit", icon: "history" as const },
 ]
 
 export const kpis = [

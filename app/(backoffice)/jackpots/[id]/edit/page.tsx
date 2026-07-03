@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation"
+import dynamic from "next/dynamic"
 
-import { JackpotEditor } from "@/components/jackpot-editor"
+import { FormPageSkeleton } from "@/components/backoffice-loading"
 import { getJackpotConfig } from "@/lib/jackpot-config-data"
+
+const JackpotEditor = dynamic(
+  () => import("@/components/jackpot-editor").then((mod) => mod.JackpotEditor),
+  { loading: () => <FormPageSkeleton /> }
+)
 
 export default async function EditJackpotPage({
   params,

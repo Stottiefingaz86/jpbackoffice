@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation"
 import {
   ChevronLeft,
   ChevronRight,
+  Coins,
+  History,
   LayoutDashboard,
   LayoutTemplate,
   Megaphone,
   Plus,
-  ScrollText,
   Shield,
-  Trophy,
 } from "lucide-react"
 import * as React from "react"
 
@@ -24,11 +24,11 @@ import { brandName, environment, navMain } from "@/lib/backoffice-data"
 
 const iconMap = {
   "layout-dashboard": LayoutDashboard,
-  trophy: Trophy,
+  coins: Coins,
   "layout-template": LayoutTemplate,
   megaphone: Megaphone,
   shield: Shield,
-  "scroll-text": ScrollText,
+  history: History,
 } as const
 
 export function SupabaseBackofficeShell({

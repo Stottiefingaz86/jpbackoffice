@@ -1,7 +1,15 @@
 import { notFound } from "next/navigation"
 
-import { TemplateEditor } from "@/components/template-editor"
+import dynamic from "next/dynamic"
+
+import { FormPageSkeleton } from "@/components/backoffice-loading"
 import { getTemplateDetail } from "@/lib/template-data"
+
+const TemplateEditor = dynamic(
+  () =>
+    import("@/components/template-editor").then((mod) => mod.TemplateEditor),
+  { loading: () => <FormPageSkeleton /> }
+)
 
 export default async function EditTemplatePage({
   params,

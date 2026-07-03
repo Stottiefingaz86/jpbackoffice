@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { PlusIcon } from "lucide-react"
+import { CircleHelpIcon, PlusIcon } from "lucide-react"
 
 import { ModeToggle } from "@/components/mode-toggle"
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,11 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { SidebarTrigger } from "@/components/ui/sidebar"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const titles: Record<string, string> = {
   "/dashboard": "Dashboard",
@@ -127,6 +132,21 @@ export function SiteHeader() {
           </BreadcrumbList>
         </Breadcrumb>
         <div className="ml-auto flex items-center gap-2">
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  variant="outline"
+                  size="icon-sm"
+                  className="text-muted-foreground"
+                />
+              }
+            >
+              <CircleHelpIcon className="size-4" />
+              <span className="sr-only">Help</span>
+            </TooltipTrigger>
+            <TooltipContent>Help & documentation</TooltipContent>
+          </Tooltip>
           <ModeToggle />
           {(pathname === "/dashboard" || pathname === "/jackpots") && (
             <Button
